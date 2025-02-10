@@ -1,22 +1,28 @@
 import React, { useState, useEffect } from 'react';
+import { subjects } from './data';
+import './App.css';
 
 const AddWordFlashcardsPage = () => {
+  const [selectedSubject, setSelectedSubject] = useState('literature');
   const [word, setWord] = useState('');
   const [definition, setDefinition] = useState('');
   const [words, setWords] = useState([]);
   const [showDefinitions, setShowDefinitions] = useState({});
   const [notification, setNotification] = useState(null);
 
+  // Загрузка слов для выбранного предмета
   useEffect(() => {
-    const storedWords = JSON.parse(localStorage.getItem('words')) || [];
+    const storedWords = JSON.parse(localStorage.getItem(`words_${selectedSubject}`)) || [];
     setWords(storedWords);
-  }, []);
+  }, [selectedSubject]);
 
+  // Уведомления
   const showNotification = (message) => {
     setNotification(message);
     setTimeout(() => setNotification(null), 2000);
   };
 
+  // Добавление нового слова
   const addWordToStorage = () => {
     if (!word.trim() || !definition.trim()) {
       showNotification('Введите слово и его определение!');
@@ -25,22 +31,25 @@ const AddWordFlashcardsPage = () => {
 
     const newWord = { word, definition };
     const newWords = [...words, newWord];
+    
     setWords(newWords);
-    localStorage.setItem('words', JSON.stringify(newWords));
+    localStorage.setItem(`words_${selectedSubject}`, JSON.stringify(newWords));
     setWord('');
     setDefinition('');
     showNotification('Слово добавлено!');
   };
 
+  // Удаление карточки
   const deleteCard = (index) => {
     const newWords = words.filter((_, i) => i !== index);
     setWords(newWords);
-    localStorage.setItem('words', JSON.stringify(newWords));
+    localStorage.setItem(`words_${selectedSubject}`, JSON.stringify(newWords));
     showNotification('Карточка удалена');
   };
 
+  // Переключение отображения определения
   const toggleDefinition = (index) => {
-    setShowDefinitions((prev) => ({
+    setShowDefinitions(prev => ({
       ...prev,
       [index]: !prev[index],
     }));
@@ -48,8 +57,32 @@ const AddWordFlashcardsPage = () => {
 
   return (
     <div className="add-word-flashcards-page">
-      {notification && <div className="notification"><i className="fas fa-bell"></i>{notification}</div>}
+      {/* Выбор категории */}
+      <div className="category-selector">
+        {Object.keys(subjects).map(key => (
+          <button
+            key={key}
+            className={selectedSubject === key ? 'active' : ''}
+            onClick={() => setSelectedSubject(key)}
+            style={{ 
+              background: subjects[key].color,
+              border: `2px solid ${subjects[key].color}`
+            }}
+          >
+            <i className={subjects[key].icon}></i>
+            {subjects[key].name}
+          </button>
+        ))}
+      </div>
 
+      {/* Уведомления */}
+      {notification && (
+        <div className="notification">
+          <i className="fas fa-bell"></i>{notification}
+        </div>
+      )}
+
+      {/* Форма добавления */}
       <div className="input-group">
         <h2><i className="fas fa-plus"></i> Добавить новое слово</h2>
         <input
@@ -69,8 +102,9 @@ const AddWordFlashcardsPage = () => {
         </button>
       </div>
 
+      {/* Список карточек */}
       <div className="flashcards-section">
-        <h2><i className="fas fa-clone"></i> Карточки</h2>
+        <h2><i className="fas fa-clone"></i> Карточки ({subjects[selectedSubject].name})</h2>
         {words.length === 0 ? (
           <div className="empty-state">
             <i className="fas fa-inbox fa-3x"></i>
@@ -80,13 +114,18 @@ const AddWordFlashcardsPage = () => {
           <div className="flashcards-container">
             {words.map((item, index) => (
               <div className="flashcard" key={index}>
-                <h3><i className="fas fa-book"></i> {item.word}</h3>
-                {showDefinitions[index] && <p className="definition">{item.definition}</p>}
+                <h3 style={{ color: subjects[selectedSubject].color }}>
+                  <i className="fas fa-book"></i> {item.word}
+                </h3>
+                {showDefinitions[index] && (
+                  <p className="definition">{item.definition}</p>
+                )}
 
                 <div className="card-actions">
                   <button 
-                    className="toggle-definition btn-primary" 
+                    className="toggle-definition btn-primary"
                     onClick={() => toggleDefinition(index)}
+                    style={{ background: subjects[selectedSubject].color }}
                   >
                     {showDefinitions[index] ? 'Скрыть' : 'Показать'}
                   </button>

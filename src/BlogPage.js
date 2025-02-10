@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './App.css';
+import './BlogPage.css';
 
 const articles = [
   {
@@ -110,7 +110,7 @@ const BlogPage = () => {
                   </div>
                   <h3>{article.title}</h3>
                   <div className="excerpt">
-                    {article.content.replace(/<[^>]+>/g, '').substring(0, 120)}...
+                    {article.content.replace(/<[^>]+>/g, '').substring(0, 140)}...
                   </div>
                   <div className="read-more-link">
                     Читать подробнее <i className="fas fa-arrow-right"></i>
@@ -130,20 +130,18 @@ const BlogPage = () => {
           </button>
 
           <div className="article-header">
-            <div className="header-content">
-              <h1>{selectedArticle.title}</h1>
-              <div className="article-meta">
-                <div className="tags">
-                  {selectedArticle.tags.map(tag => (
-                    <span key={tag} className="tag">
-                      <i className="fas fa-hashtag"></i> {tag}
-                    </span>
-                  ))}
-                </div>
-                <span className="date">
-                  <i className="far fa-calendar-alt"></i> {selectedArticle.date}
-                </span>
+            <h1>{selectedArticle.title}</h1>
+            <div className="article-meta">
+              <div className="tags">
+                {selectedArticle.tags.map(tag => (
+                  <span key={tag} className="tag">
+                    <i className="fas fa-hashtag"></i> {tag}
+                  </span>
+                ))}
               </div>
+              <span className="date">
+                <i className="far fa-calendar-alt"></i> {selectedArticle.date}
+              </span>
             </div>
           </div>
 
