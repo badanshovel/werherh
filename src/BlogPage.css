@@ -1,100 +1,97 @@
-/* BlogPage.css */
-.blog-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
+/* Новые стили для категорий */
+.subject-filter {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.subject-pill {
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid var(--subject-color);
+  color: var(--subject-color);
+  padding: 0.8rem 1.5rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  backdrop-filter: blur(5px);
+}
+
+.subject-pill.active {
+  background: var(--subject-color);
+  color: white;
+}
+
+.subject-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.subject-header {
+  margin: 3rem 0 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 3px solid;
+}
+
+.subject-header h2 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark-color);
+}
+
+.decorative-line {
+  height: 4px;
+  width: 60px;
+  border-radius: 2px;
+  margin-top: 0.5rem;
+}
+
+/* Обновленная сетка статей */
+.articles-grid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.article-card {
+  background: linear-gradient(145deg, #ffffff, #f8fafc);
+  border-radius: 1.2rem;
+  overflow: hidden;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.article-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--subject-color);
+}
+
+/* Анимация при наведении */
+.article-card:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+/* Стили для мобильной версии */
+@media (max-width: 768px) {
+  .subject-filter {
+    gap: 0.8rem;
   }
   
-  .articles-grid {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    padding: 2rem 0;
-  }
-  
-  .article-card {
-    background: white;
-    border-radius: 1.5rem;
-    overflow: hidden;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    cursor: pointer;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-  }
-  
-  .article-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-  }
-  
-  .card-content {
-    padding: 1.5rem;
-  }
-  
-  .card-badge {
-    background: var(--primary-color);
-    color: white;
-    padding: 0.5rem 1.2rem;
-    border-radius: 50px;
-    display: inline-block;
+  .subject-pill {
+    padding: 0.6rem 1.2rem;
     font-size: 0.9rem;
-    margin-bottom: 1rem;
   }
-  
-  .article-detail {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
+
+  .subject-header h2 {
+    font-size: 1.8rem;
   }
-  
-  .article-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    color: var(--dark-color);
-  }
-  
-  .article-meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-    gap: 1rem;
-  }
-  
-  .tag {
-    background: rgba(99, 102, 241, 0.1);
-    color: var(--secondary-color);
-    padding: 0.5rem 1rem;
-    border-radius: 50px;
-    font-size: 0.9rem;
-  }
-  
-  .article-content {
-    line-height: 1.8;
-    font-size: 1.1rem;
-    color: #444;
-  }
-  
-  .article-content h3 {
-    margin: 2rem 0 1rem;
-    color: var(--dark-color);
-  }
-  
-  .back-button {
-    background: rgba(99, 102, 241, 0.1);
-    color: var(--secondary-color);
-    padding: 0.8rem 1.5rem;
-    border-radius: 50px;
-    margin-bottom: 2rem;
-  }
-  
-  @media (max-width: 768px) {
-    .article-header h1 {
-      font-size: 1.8rem;
-    }
-    
-    .article-content {
-      font-size: 1rem;
-    }
-  }
+}
