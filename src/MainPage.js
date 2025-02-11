@@ -74,7 +74,7 @@ function MainPage() {
               onClick={getRandomWord}
               disabled={learnedWords.length === subjects[selectedSubject].words.length || !isWordsLoaded}
             >
-              <i className="fas fa-dice"></i> Новое слово
+              <i className="fas fa-dice"></i> <span className="gradient-text1">Новое слово</span>
             </button>
 
             {randomWord && (
@@ -89,7 +89,7 @@ function MainPage() {
                   onClick={addToLearned}
                   disabled={learnedWords.some((w) => w.word === randomWord.word)}
                 >
-                  <i className="fas fa-star"></i> Добавить в изученные
+                  <i className="fas fa-star"></i> Добавить в изученные 
                 </button>
               </div>
             )}

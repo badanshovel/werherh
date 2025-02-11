@@ -5,7 +5,7 @@ const HelpPage = () => {
     <div className="help-page">
       <div className="help-hero">
         <h1 className="gradient-text">
-          <i className="fas fa-magic"></i> Секреты успешного обучения
+          <i className="fas fa-magic"></i> <span className="gradient-text3">Секреты успешного обучения</span>
         </h1>
         <p className="motto">"Повторение - мать учения, а система - его отец!"</p>
       </div>

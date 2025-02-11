@@ -72,7 +72,7 @@ const FeedbackPage = () => {
   return (
     <div className="feedback-page">
       <div className="feedback-container">
-        <h2 className="gradient-text">💬 Ваше мнение важно!</h2>
+        <h2 className="gradient-text5">💬 Ваше мнение важно!</h2>
         
         <form onSubmit={handleSubmit} className="feedback-form">
           <div className="form-group">

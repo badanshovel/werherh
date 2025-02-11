@@ -95,7 +95,7 @@ function TestsPage() {
         <>
           <div className="test-header">
             <h1 className="gradient-text">
-              <i className="fas fa-brain"></i> Тест: {subjects[selectedSubject].name}
+              <i className="fas fa-brain"></i> <span className="gradient-text4">Тест: {subjects[selectedSubject].name}</span>
             </h1>
             <div className="progress-container">
               <div

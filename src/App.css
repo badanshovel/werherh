@@ -183,6 +183,17 @@ input:focus, textarea:focus {
   }
 }
 
+.add-btn {
+  background: #61af63;
+  border-color: #45a049;
+  color: white;
+}
+
+.add-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
 /* Страница тестов */
 .answer-btn {
   width: 100%;
@@ -242,7 +253,25 @@ input:focus, textarea:focus {
 }
 
 .gradient-text {
-  background: linear-gradient(45deg, #ff6600, #ff8800);
+  background: linear-gradient(45deg, #cff7a2, #bff037);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text1 {
+  background: linear-gradient(45deg, #7753fc, #546132);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text3 {
+  background: linear-gradient(45deg, #57a76b, #9420d8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gradient-text5 {
+  background: linear-gradient(45deg, #636363, #5a5a5a);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
